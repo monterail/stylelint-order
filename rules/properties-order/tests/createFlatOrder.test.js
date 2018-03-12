@@ -1,5 +1,3 @@
-'use strict';
-
 const createFlatOrder = require('../createFlatOrder');
 
 describe('createFlatOrder', () => {
@@ -10,17 +8,11 @@ describe('createFlatOrder', () => {
 			{
 				emptyLineBefore: 'always',
 				order: 'strict',
-				properties: [
-					'display',
-				],
+				properties: ['display'],
 			},
 		];
 
-		const expected = [
-			'height',
-			'width',
-			'display',
-		];
+		const expected = ['height', 'width', 'display'];
 
 		expect(createFlatOrder(config)).toEqual(expected);
 	});
@@ -30,33 +22,21 @@ describe('createFlatOrder', () => {
 			{
 				emptyLineBefore: 'always',
 				order: 'flexible',
-				properties: [
-					'border-bottom',
-					'font-style',
-				],
+				properties: ['border-bottom', 'font-style'],
 			},
 			{
 				emptyLineBefore: 'never',
 				order: 'strict',
-				properties: [
-					'position',
-				],
+				properties: ['position'],
 			},
 			{
 				emptyLineBefore: 'always',
 				order: 'strict',
-				properties: [
-					'display',
-				],
+				properties: ['display'],
 			},
 		];
 
-		const expected = [
-			'border-bottom',
-			'font-style',
-			'position',
-			'display',
-		];
+		const expected = ['border-bottom', 'font-style', 'position', 'display'];
 
 		expect(createFlatOrder(config)).toEqual(expected);
 	});
@@ -64,23 +44,16 @@ describe('createFlatOrder', () => {
 	it('valid groups (one without emptyLineBefore)', () => {
 		const config = [
 			{
-				properties: [
-					'display',
-				],
+				properties: ['display'],
 			},
 			{
 				emptyLineBefore: 'always',
 				order: 'strict',
-				properties: [
-					'border',
-				],
+				properties: ['border'],
 			},
 		];
 
-		const expected = [
-			'display',
-			'border',
-		];
+		const expected = ['display', 'border'];
 
 		expect(createFlatOrder(config)).toEqual(expected);
 	});
@@ -89,8 +62,7 @@ describe('createFlatOrder', () => {
 		const config = [
 			{
 				emptyLineBefore: 'always',
-				properties: [
-				],
+				properties: [],
 			},
 		];
 

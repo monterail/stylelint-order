@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 
 module.exports = function getDescription(item) {
@@ -8,7 +6,7 @@ module.exports = function getDescription(item) {
 		'dollar-variables': '$-variable',
 		'at-variables': '@-variable',
 		'less-mixins': 'Less mixin',
-		'declarations': 'declaration',
+		declarations: 'declaration',
 	};
 
 	if (_.isPlainObject(item)) {

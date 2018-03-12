@@ -1,18 +1,9 @@
-'use strict';
-
 const rule = require('..');
-const ruleName = rule.ruleName;
-const messages = rule.messages;
+const { ruleName, messages } = rule;
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'custom-properties',
-		'dollar-variables',
-		'declarations',
-		'rules',
-		'at-rules',
-	]],
+	config: [['custom-properties', 'dollar-variables', 'declarations', 'rules', 'at-rules']],
 	fix: true,
 
 	accept: [
@@ -173,35 +164,37 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-		},
-		{
-			type: 'at-rule',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+			},
+			{
+				type: 'at-rule',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+			},
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -325,32 +318,35 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'at-rule',
-			name: 'include',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-		},
-		{
-			type: 'at-rule',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-			hasBlock: true,
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'at-rule',
+				name: 'include',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+			},
+			{
+				type: 'at-rule',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+				hasBlock: true,
+			},
+		],
+	],
+	fix: true,
 
 	accept: [
 		{
@@ -404,32 +400,34 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'at-rule',
-			name: 'include',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-		},
-		{
-			type: 'at-rule',
-			hasBlock: true,
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-		},
-		{
-			type: 'at-rule',
-			name: 'include',
-			parameter: 'media',
-			hasBlock: true,
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'at-rule',
+				name: 'include',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+			},
+			{
+				type: 'at-rule',
+				hasBlock: true,
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+			},
+			{
+				type: 'at-rule',
+				name: 'include',
+				parameter: 'media',
+				hasBlock: true,
+			},
+		],
+	],
 	fix: true,
 
 	reject: [
@@ -498,13 +496,16 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'at-rule',
-			hasBlock: false,
-		},
-		'declarations',
-	]],
+	config: [
+		[
+			{
+				type: 'at-rule',
+				hasBlock: false,
+			},
+			'declarations',
+		],
+	],
+	fix: true,
 
 	accept: [
 		{
@@ -534,13 +535,15 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'at-rule',
-			hasBlock: false,
-		},
-		'declarations',
-	]],
+	config: [
+		[
+			{
+				type: 'at-rule',
+				hasBlock: false,
+			},
+			'declarations',
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -587,12 +590,14 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'declarations',
-		{
-			type: 'at-rule',
-		},
-	]],
+	config: [
+		[
+			'declarations',
+			{
+				type: 'at-rule',
+			},
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -626,10 +631,7 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'declarations',
-		'at-rules',
-	]],
+	config: [['declarations', 'at-rules']],
 	fix: true,
 
 	accept: [
@@ -664,49 +666,44 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'custom-properties',
-			'declarations',
-		],
-		{
-			unspecified: 'top',
-		},
-	],
-
-	accept: [
-		{
-			code: `
-				a {
-					$width: 5px;
-					--height: 10px;
-					display: none;
-				}
-			`,
-		},
-		{
-			code: `
-				a {
-					$width: 5px;
-					@include hello;
-				}
-			`,
-		},
-	],
-});
-
-testRule(rule, {
-	ruleName,
-	config: [
-		[
-			'custom-properties',
-			'declarations',
-		],
+		['custom-properties', 'declarations'],
 		{
 			unspecified: 'top',
 		},
 	],
 	fix: true,
 
+	accept: [
+		{
+			code: `
+				a {
+					$width: 5px;
+					--height: 10px;
+					display: none;
+				}
+			`,
+		},
+		{
+			code: `
+				a {
+					$width: 5px;
+					@include hello;
+				}
+			`,
+		},
+	],
+});
+
+testRule(rule, {
+	ruleName,
+	config: [
+		['custom-properties', 'declarations'],
+		{
+			unspecified: 'top',
+		},
+	],
+	fix: true,
+
 	reject: [
 		{
 			code: `
@@ -742,10 +739,7 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'custom-properties',
-			'declarations',
-		],
+		['custom-properties', 'declarations'],
 		{
 			unspecified: 'bottom',
 		},
@@ -806,19 +800,21 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'rule',
-			selector: '^a',
-		},
-		{
-			type: 'rule',
-			selector: /^&/,
-		},
-		{
-			type: 'rule',
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'rule',
+				selector: '^a',
+			},
+			{
+				type: 'rule',
+				selector: /^&/,
+			},
+			{
+				type: 'rule',
+			},
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -904,19 +900,21 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'rule',
-			selector: /^&/,
-		},
-		{
-			type: 'rule',
-			selector: /^&:\w/,
-		},
-		{
-			type: 'rule',
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'rule',
+				selector: /^&/,
+			},
+			{
+				type: 'rule',
+				selector: /^&:\w/,
+			},
+			{
+				type: 'rule',
+			},
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -978,19 +976,21 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		{
-			type: 'rule',
-		},
-		{
-			type: 'rule',
-			selector: /^&:\w/,
-		},
-		{
-			type: 'rule',
-			selector: /^&/,
-		},
-	]],
+	config: [
+		[
+			{
+				type: 'rule',
+			},
+			{
+				type: 'rule',
+				selector: /^&:\w/,
+			},
+			{
+				type: 'rule',
+				selector: /^&/,
+			},
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -1047,16 +1047,11 @@ testRule(rule, {
 	],
 });
 
+// Doesn't has fix, because postcss-sorting doesn't know about at-variables
 testRule(rule, {
 	ruleName,
 	syntax: 'less',
-	config: [[
-		'custom-properties',
-		'at-variables',
-		'declarations',
-		'rules',
-		'at-rules',
-	]],
+	config: [['custom-properties', 'at-variables', 'declarations', 'rules', 'at-rules']],
 
 	accept: [
 		{
@@ -1100,13 +1095,11 @@ testRule(rule, {
 	],
 });
 
+// Doesn't has fix, because postcss-sorting doesn't know about less-mixins
 testRule(rule, {
 	ruleName,
 	syntax: 'less',
-	config: [[
-		'less-mixins',
-		'rules',
-	]],
+	config: [['less-mixins', 'rules']],
 
 	accept: [
 		{
@@ -1152,13 +1145,7 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'custom-properties',
-			'dollar-variables',
-			'declarations',
-			'rules',
-			'at-rules',
-		],
+		['custom-properties', 'dollar-variables', 'declarations', 'rules', 'at-rules'],
 		{
 			disableFix: true,
 		},
@@ -1223,6 +1210,32 @@ testRule(rule, {
 				}
 			`,
 			description: `shouldn't apply fixes`,
+		},
+	],
+});
+
+testRule(rule, {
+	ruleName,
+	config: [['custom-properties']],
+	fix: true,
+
+	accept: [
+		{
+			code: `
+				a {
+					--width: 10px;
+					display: none;
+				}
+			`,
+		},
+		{
+			description: 'should not fix if there no violation',
+			code: `
+				a {
+					display: none;
+					--width: 10px;
+				}
+			`,
 		},
 	],
 });

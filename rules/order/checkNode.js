@@ -1,5 +1,3 @@
-'use strict';
-
 const stylelint = require('stylelint');
 const _ = require('lodash');
 const checkOrder = require('./checkOrder');
@@ -43,6 +41,13 @@ module.exports = function checkNode(node, sharedInfo) {
 		const isCorrectOrder = checkOrder(previousNodeData, nodeData, allNodesData, sharedInfo);
 
 		if (isCorrectOrder) {
+			return;
+		}
+
+		if (sharedInfo.isFixEnabled) {
+			sharedInfo.shouldFix = true;
+
+			// Don't go further, fix will be applied
 			return;
 		}
 

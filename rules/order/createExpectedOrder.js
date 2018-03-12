@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 const getDescription = require('./getDescription');
 
@@ -7,27 +5,17 @@ module.exports = function createExpectedOrder(input) {
 	const order = {};
 	let expectedPosition = 0;
 
-	input.forEach((item) => {
+	input.forEach(item => {
 		expectedPosition += 1;
 
-		if (
-			(
-				_.isString(item)
-				&& item !== 'at-rules'
-				&& item !== 'rules'
-			)
-			|| item === 'less-mixins'
-		) {
+		if ((_.isString(item) && item !== 'at-rules' && item !== 'rules') || item === 'less-mixins') {
 			order[item] = {
 				expectedPosition,
 				description: getDescription(item),
 			};
 		}
 
-		if (
-			item === 'rules'
-			|| item.type === 'rule'
-		) {
+		if (item === 'rules' || item.type === 'rule') {
 			// Convert 'rules' into extended pattern
 			if (item === 'rules') {
 				item = {
@@ -56,10 +44,7 @@ module.exports = function createExpectedOrder(input) {
 			order[item.type].push(nodeData);
 		}
 
-		if (
-			item === 'at-rules'
-			|| item.type === 'at-rule'
-		) {
+		if (item === 'at-rules' || item.type === 'at-rule') {
 			// Convert 'at-rules' into extended pattern
 			if (item === 'at-rules') {
 				item = {

@@ -1,5 +1,3 @@
-'use strict';
-
 const stylelint = require('stylelint');
 const _ = require('lodash');
 const postcss = require('postcss');
@@ -16,7 +14,7 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
 function rule(actual, options, context) {
 	context = context || {};
 
-	return function (root, result) {
+	return function(root, result) {
 		const validOptions = stylelint.utils.validateOptions(
 			result,
 			ruleName,
@@ -71,7 +69,7 @@ function checkNode(node, result) {
 			return;
 		}
 
-		const prop = child.prop;
+		const { prop } = child;
 
 		if (utils.isIgnorable(prop)) {
 			return;

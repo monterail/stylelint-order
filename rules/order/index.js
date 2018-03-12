@@ -1,5 +1,3 @@
-'use strict';
-
 const stylelint = require('stylelint');
 const _ = require('lodash');
 const postcssSorting = require('postcss-sorting');
@@ -17,7 +15,7 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
 function rule(expectation, options, context) {
 	context = context || {};
 
-	return function (root, result) {
+	return function(root, result) {
 		const validOptions = stylelint.utils.validateOptions(
 			result,
 			ruleName,
@@ -39,18 +37,13 @@ function rule(expectation, options, context) {
 			return;
 		}
 
-		const disableFix = _.get(options, ['disableFix'], false);
-
-		if (context.fix && !disableFix) {
-			postcssSorting({ order: expectation })(root);
-
-			return;
-		}
+		const disableFix = _.get(options, 'disableFix', false);
+		const isFixEnabled = context.fix && !disableFix;
 
 		const expectedOrder = createExpectedOrder(expectation);
 
 		// By default, ignore unspecified properties
-		const unspecified = _.get(options, ['unspecified'], 'ignore');
+		const unspecified = _.get(options, 'unspecified', 'ignore');
 
 		const sharedInfo = {
 			expectedOrder,
@@ -58,14 +51,25 @@ function rule(expectation, options, context) {
 			messages,
 			ruleName,
 			result,
+			isFixEnabled,
+			shouldFix: false,
 		};
 
 		// Check all rules and at-rules recursively
 		root.walk(function processRulesAndAtrules(node) {
+			// return early if we know there is a violation and auto fix should be applied
+			if (isFixEnabled && sharedInfo.shouldFix) {
+				return;
+			}
+
 			if (node.type === 'rule' || node.type === 'atrule') {
 				checkNode(node, sharedInfo);
 			}
 		});
+
+		if (sharedInfo.shouldFix) {
+			postcssSorting({ order: expectation })(root);
+		}
 	};
 }
 

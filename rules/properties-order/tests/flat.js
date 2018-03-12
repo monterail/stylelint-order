@@ -1,20 +1,9 @@
-'use strict';
-
 const rule = require('..');
-const ruleName = rule.ruleName;
-const messages = rule.messages;
+const { ruleName, messages } = rule;
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'my',
-		'transform',
-		'font-smoothing',
-		'top',
-		'transition',
-		'border',
-		'color',
-	]],
+	config: [['my', 'transform', 'font-smoothing', 'top', 'transition', 'border', 'color']],
 	fix: true,
 
 	accept: [
@@ -62,6 +51,7 @@ testRule(rule, {
 
 	reject: [
 		{
+			// only: true,
 			code: 'a { color: pink; top: 0;  }',
 			fixed: 'a { top: 0; color: pink;  }',
 			message: messages.expected('top', 'color'),
@@ -102,15 +92,7 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'my',
-		'transform',
-		'font-smoothing',
-		'top',
-		'transition',
-		'border',
-		'color',
-	]],
+	config: [['my', 'transform', 'font-smoothing', 'top', 'transition', 'border', 'color']],
 
 	accept: [
 		{
@@ -124,16 +106,18 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'padding',
-		'padding-top',
-		'padding-right',
-		'padding-left',
-		'border',
-		'border-top',
-		'border-right',
-		'color',
-	]],
+	config: [
+		[
+			'padding',
+			'padding-top',
+			'padding-right',
+			'padding-left',
+			'border',
+			'border-top',
+			'border-right',
+			'color',
+		],
+	],
 	fix: true,
 
 	accept: [
@@ -178,20 +162,23 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'padding',
-		'padding-top',
-		'padding-right',
-		'padding-left',
-		'border',
-		'border-top',
-		'border-right',
-		'color',
-	]],
+	config: [
+		[
+			'padding',
+			'padding-top',
+			'padding-right',
+			'padding-left',
+			'border',
+			'border-top',
+			'border-right',
+			'color',
+		],
+	],
 
 	accept: [
 		{
-			code: 'a { padding-bottom: 0; padding-top: 1px; padding-right: 0; padding-left: 0; color: pink; }',
+			code:
+				'a { padding-bottom: 0; padding-top: 1px; padding-right: 0; padding-left: 0; color: pink; }',
 		},
 		{
 			code: 'a { padding: 1px; padding-bottom: 0; padding-left: 0; color: pink; }',
@@ -202,10 +189,7 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'height',
-			'color',
-		],
+		['height', 'color'],
 		{
 			unspecified: 'top',
 		},
@@ -238,10 +222,7 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'height',
-			'color',
-		],
+		['height', 'color'],
 		{
 			unspecified: 'bottom',
 		},
@@ -274,10 +255,7 @@ testRule(rule, {
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'all',
-			'compose',
-		],
+		['all', 'compose'],
 		{
 			unspecified: 'bottomAlphabetical',
 		},
@@ -312,43 +290,34 @@ testRule(rule, {
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'left',
-		'margin',
-	]],
+	config: [['left', 'margin']],
 
-	accept: [{
-		code: '.foo { left: 0; color: pink; margin: 0; }',
-	}],
+	accept: [
+		{
+			code: '.foo { left: 0; color: pink; margin: 0; }',
+		},
+	],
 });
 
 testRule(rule, {
 	ruleName,
-	config: [[
-		'left',
-		'margin',
-	]],
+	config: [['left', 'margin']],
 	fix: true,
 
-	reject: [{
-		code: '.foo { margin: 0; color: pink; left: 0; }',
-		fixed: '.foo { left: 0; margin: 0; color: pink; }',
-		message: messages.expected('left', 'margin'),
-	}],
+	reject: [
+		{
+			description: `report incorrect order if there're properties with undefined order`,
+			code: '.foo { margin: 0; color: pink; left: 0; }',
+			fixed: '.foo { left: 0; margin: 0; color: pink; }',
+			message: messages.expected('left', 'margin'),
+		},
+	],
 });
 
 testRule(rule, {
 	ruleName,
 	config: [
-		[
-			'my',
-			'transform',
-			'font-smoothing',
-			'top',
-			'transition',
-			'border',
-			'color',
-		],
+		['my', 'transform', 'font-smoothing', 'top', 'transition', 'border', 'color'],
 		{
 			disableFix: true,
 		},

@@ -1,6 +1,4 @@
-'use strict';
-
-const ruleName = require('..').ruleName;
+const { ruleName } = require('..');
 
 testConfig({
 	ruleName,
@@ -93,9 +91,7 @@ testConfig({
 	ruleName,
 	description: 'invalid keyword',
 	valid: false,
-	config: [
-		'custom-property',
-	],
+	config: ['custom-property'],
 	message: `Invalid option "["custom-property"]" for rule ${ruleName}`,
 });
 
@@ -188,7 +184,9 @@ testConfig({
 			parameter: '',
 		},
 	],
-	message: `Invalid option "[{"type":"at-rule","name":"include","parameter":""}]" for rule ${ruleName}`,
+	message: `Invalid option "[{"type":"at-rule","name":"include","parameter":""}]" for rule ${
+		ruleName
+	}`,
 });
 
 testConfig({
@@ -202,7 +200,9 @@ testConfig({
 			parameter: null,
 		},
 	],
-	message: `Invalid option "[{"type":"at-rule","name":"include","parameter":null}]" for rule ${ruleName}`,
+	message: `Invalid option "[{"type":"at-rule","name":"include","parameter":null}]" for rule ${
+		ruleName
+	}`,
 });
 
 testConfig({
@@ -273,10 +273,7 @@ testConfig({
 	description: 'disableFix true',
 	valid: true,
 	config: [
-		[
-			'custom-properties',
-			'dollar-variables',
-		],
+		['custom-properties', 'dollar-variables'],
 		{
 			disableFix: true,
 		},
@@ -288,10 +285,7 @@ testConfig({
 	description: 'disableFix false',
 	valid: true,
 	config: [
-		[
-			'custom-properties',
-			'dollar-variables',
-		],
+		['custom-properties', 'dollar-variables'],
 		{
 			disableFix: false,
 		},

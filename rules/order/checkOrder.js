@@ -1,5 +1,3 @@
-'use strict';
-
 const stylelint = require('stylelint');
 const _ = require('lodash');
 
@@ -15,14 +13,27 @@ module.exports = function checkOrder(firstNodeData, secondNodeData, allNodesData
 	if (firstNodeIsUnspecified && !secondNodeIsUnspecified) {
 		// If first node is unspecified, look for a specified node before it to
 		// compare to the current node
-		const priorSpecifiedNodeData = _.findLast(allNodesData.slice(0, -1), (d) => Boolean(d.expectedPosition));
+		const priorSpecifiedNodeData = _.findLast(allNodesData.slice(0, -1), d =>
+			Boolean(d.expectedPosition)
+		);
 
 		if (
-			priorSpecifiedNodeData && priorSpecifiedNodeData.expectedPosition
-			&& priorSpecifiedNodeData.expectedPosition > secondNodeData.expectedPosition
+			priorSpecifiedNodeData &&
+			priorSpecifiedNodeData.expectedPosition &&
+			priorSpecifiedNodeData.expectedPosition > secondNodeData.expectedPosition
 		) {
+			if (sharedInfo.isFixEnabled) {
+				sharedInfo.shouldFix = true;
+
+				// Don't go further, fix will be applied
+				return;
+			}
+
 			stylelint.utils.report({
-				message: sharedInfo.messages.expected(secondNodeData.description, priorSpecifiedNodeData.description),
+				message: sharedInfo.messages.expected(
+					secondNodeData.description,
+					priorSpecifiedNodeData.description
+				),
 				node: secondNodeData.node,
 				result: sharedInfo.result,
 				ruleName: sharedInfo.ruleName,
@@ -36,7 +47,7 @@ module.exports = function checkOrder(firstNodeData, secondNodeData, allNodesData
 		return true;
 	}
 
-	const unspecified = sharedInfo.unspecified;
+	const { unspecified } = sharedInfo;
 
 	if (unspecified === 'ignore' && (firstNodeIsUnspecified || secondNodeIsUnspecified)) {
 		return true;
@@ -45,6 +56,7 @@ module.exports = function checkOrder(firstNodeData, secondNodeData, allNodesData
 	if (unspecified === 'top' && firstNodeIsUnspecified) {
 		return true;
 	}
+
 	if (unspecified === 'top' && secondNodeIsUnspecified) {
 		return false;
 	}
@@ -52,6 +64,7 @@ module.exports = function checkOrder(firstNodeData, secondNodeData, allNodesData
 	if (unspecified === 'bottom' && secondNodeIsUnspecified) {
 		return true;
 	}
+
 	if (unspecified === 'bottom' && firstNodeIsUnspecified) {
 		return false;
 	}

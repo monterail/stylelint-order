@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function calcAtRulePatternPriority(pattern, node) {
 	// 0 — it pattern doesn't match
 	// 1 — pattern without `name` and `hasBlock`
@@ -30,7 +28,11 @@ module.exports = function calcAtRulePatternPriority(pattern, node) {
 	}
 
 	// doesn't have `name` and `hasBlock`
-	if (!pattern.hasOwnProperty('hasBlock') && !pattern.hasOwnProperty('name') && !pattern.hasOwnProperty('paremeter')) {
+	if (
+		!pattern.hasOwnProperty('hasBlock') &&
+		!pattern.hasOwnProperty('name') &&
+		!pattern.hasOwnProperty('paremeter')
+	) {
 		priority = 1;
 	}
 
@@ -45,7 +47,12 @@ module.exports = function calcAtRulePatternPriority(pattern, node) {
 	}
 
 	// patter has `name`, `parameter`, and `hasBlock`, but it doesn't match all properties
-	if (pattern.hasOwnProperty('name') && pattern.hasOwnProperty('parameter') && pattern.hasOwnProperty('hasBlock') && priority < 30000) {
+	if (
+		pattern.hasOwnProperty('name') &&
+		pattern.hasOwnProperty('parameter') &&
+		pattern.hasOwnProperty('hasBlock') &&
+		priority < 30000
+	) {
 		priority = 0;
 	}
 

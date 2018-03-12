@@ -1,6 +1,4 @@
-'use strict';
-
-const ruleName = require('..').ruleName;
+const { ruleName } = require('..');
 
 testConfig({
 	ruleName,
@@ -10,24 +8,17 @@ testConfig({
 		{
 			emptyLineBefore: 'always',
 			order: 'flexible',
-			properties: [
-				'border-bottom',
-				'font-style',
-			],
+			properties: ['border-bottom', 'font-style'],
 		},
 		{
 			emptyLineBefore: 'never',
 			order: 'strict',
-			properties: [
-				'position',
-			],
+			properties: ['position'],
 		},
 		{
 			emptyLineBefore: 'always',
 			order: 'strict',
-			properties: [
-				'display',
-			],
+			properties: ['display'],
 		},
 	],
 });
@@ -42,9 +33,7 @@ testConfig({
 		{
 			emptyLineBefore: 'always',
 			order: 'strict',
-			properties: [
-				'display',
-			],
+			properties: ['display'],
 		},
 	],
 });
@@ -55,16 +44,12 @@ testConfig({
 	valid: true,
 	config: [
 		{
-			properties: [
-				'display',
-			],
+			properties: ['display'],
 		},
 		{
 			emptyLineBefore: 'always',
 			order: 'strict',
-			properties: [
-				'border',
-			],
+			properties: ['border'],
 		},
 	],
 });
@@ -76,8 +61,7 @@ testConfig({
 	config: [
 		{
 			emptyLineBefore: 'always',
-			properties: [
-			],
+			properties: [],
 		},
 	],
 });
@@ -90,13 +74,12 @@ testConfig({
 		{
 			emptyLineBefore: true,
 			order: 'flexible',
-			properties: [
-				'border-bottom',
-				'font-style',
-			],
+			properties: ['border-bottom', 'font-style'],
 		},
 	],
-	message: `Invalid option "[{"emptyLineBefore":true,"order":"flexible","properties":["border-bottom","font-style"]}]" for rule ${ruleName}`,
+	message: `Invalid option "[{"emptyLineBefore":true,"order":"flexible","properties":["border-bottom","font-style"]}]" for rule ${
+		ruleName
+	}`,
 });
 
 testConfig({
@@ -110,7 +93,9 @@ testConfig({
 			properties: null,
 		},
 	],
-	message: `Invalid option "[{"emptyLineBefore":"always","order":"flexible","properties":null}]" for rule ${ruleName}`,
+	message: `Invalid option "[{"emptyLineBefore":"always","order":"flexible","properties":null}]" for rule ${
+		ruleName
+	}`,
 });
 
 testConfig({
@@ -118,10 +103,7 @@ testConfig({
 	description: 'disableFix true',
 	valid: true,
 	config: [
-		[
-			'height',
-			'width',
-		],
+		['height', 'width'],
 		{
 			disableFix: true,
 		},
@@ -133,10 +115,7 @@ testConfig({
 	description: 'disableFix false',
 	valid: true,
 	config: [
-		[
-			'height',
-			'width',
-		],
+		['height', 'width'],
 		{
 			disableFix: false,
 		},
